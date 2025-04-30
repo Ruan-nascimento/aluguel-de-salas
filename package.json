@@ -1,0 +1,21 @@
+{
+  "name": "reserva-de-salas-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.py",
+  "scripts": {
+    "main": "python ./src/main.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ruan-nascimento/aluguel-de-salas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ruan-nascimento/aluguel-de-salas/issues"
+  },
+  "homepage": "https://github.com/Ruan-nascimento/aluguel-de-salas#readme"
+}
