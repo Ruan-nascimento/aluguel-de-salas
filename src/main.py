@@ -2,8 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from interfaces.main_window import MainWindow
 
-def main():
-    
+def main():   
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
@@ -13,5 +12,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
     
