@@ -3,6 +3,7 @@ from interfaces.new_reserve import NewReserve
 from interfaces.list import ListReserves
 from interfaces.history import History
 from interfaces.managment import Managment
+from interfaces.dashboard import Dashboard
 from components.nav_buttons import Button
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QIcon
@@ -64,6 +65,9 @@ class MainWindow(QMainWindow):
             
         
         #  botões de navegação
+        self.button_dashboard = Button('Painel')
+        self.button_dashboard.button.clicked.connect(self.open_dashboard)
+        
         self.button_new_reserve = Button('Nova Reserva')
         self.button_new_reserve.button.clicked.connect(self.new_reserve)
         
@@ -76,8 +80,10 @@ class MainWindow(QMainWindow):
         self.button_history = Button('Histórico')
         self.button_history.button.clicked.connect(self.history)
         
+        
         # definindo botões no layout de navegação
         self.nav_layout.addWidget(self.logo)
+        self.nav_layout.addWidget(self.button_dashboard.button)
         self.nav_layout.addWidget(self.button_new_reserve.button)
         self.nav_layout.addWidget(self.button_reserve.button)
         self.nav_layout.addWidget(self.button_managment.button)
@@ -91,11 +97,13 @@ class MainWindow(QMainWindow):
         self.pages.setStyleSheet('background-color: #3F3F46;')
         
         # adicionando as páginas
+        self.page_dashboard = Dashboard()
         self.page_new_reserve = NewReserve()
         self.page_list_reserves = ListReserves()
         self.page_managment = Managment()
         self.page_history = History()
         
+        self.pages.addWidget(self.page_dashboard)
         self.pages.addWidget(self.page_new_reserve)
         self.pages.addWidget(self.page_managment)
         self.pages.addWidget(self.page_list_reserves)
@@ -114,6 +122,10 @@ class MainWindow(QMainWindow):
         
         
     # função para abrir a página de Adicionar nova reserva
+    def open_dashboard(self):
+        self.pages.setCurrentWidget(self.page_dashboard)
+        self.get_current_page()
+    
     def new_reserve(self):
         self.pages.setCurrentWidget(self.page_new_reserve)
         self.get_current_page()
@@ -136,8 +148,9 @@ class MainWindow(QMainWindow):
     # função para reconhecer a página atual
     def get_current_page(self):
         current = self.pages.currentWidget()
-        
+    
         pages = {
+            self.page_dashboard: self.button_dashboard,
             self.page_history: self.button_history,
             self.page_list_reserves: self.button_reserve,
             self.page_managment: self.button_managment,
@@ -147,31 +160,27 @@ class MainWindow(QMainWindow):
         for k, v in pages.items():
             if current == k:
                 v.button.setStyleSheet("""
-                                       QPushButton {
-                                        background-color: #C2410C;
-                                        color: white;
-                                        outline: none;
-                                        border-radius: 8px;
-                                        padding: 10px
-                                    }
-                           
-                                        QPushButton:hover{
-                                            background-color: #8f2f08;
-                                        }
-                                       """)
-            
+                    QPushButton {
+                        background-color: #C2410C;
+                        color: white;
+                        border-radius: 8px;
+                        padding: 10px;
+                        outline: none;
+                    }
+                    QPushButton:hover {
+                        background-color: #8f2f08;
+                    }
+                """)
             else:
                 v.button.setStyleSheet("""
-                                       QPushButton {
-                                        background-color: #F97316;
-                                        color: white;
-                                        outline: none;
-                                        border-radius: 8px;
-                                        padding: 10px
-                                    }
-                           
-                                        QPushButton:hover{
-                                            background-color: #c55b11;
-                                        }
-                                       """)
-        
+                    QPushButton {
+                        background-color: #F97316;
+                        color: white;
+                        border-radius: 8px;
+                        padding: 10px;
+                        outline: none;
+                    }
+                    QPushButton:hover {
+                        background-color: #c55b11;
+                    }
+                """)
