@@ -15,18 +15,18 @@ class Button(QPushButton):
         self.button = QPushButton(text)
         self.button.setCursor(QCursor(Qt.PointingHandCursor))
         self.button.setStyleSheet("""
-                           QPushButton {
-                               background-color: #3A78C2;
-                               color: white;
-                               outline: none;
-                               border-radius: 8px;
-                               padding: 10px
-                           }
+                                       QPushButton {
+                                        background-color: #F97316;
+                                        color: white;
+                                        outline: none;
+                                        border-radius: 8px;
+                                        padding: 10px
+                                    }
                            
-                           QPushButton:hover{
-                               background-color: #6AA8F5;
-                           }
-                           """)
+                                        QPushButton:hover{
+                                            background-color: #c55b11;
+                                        }
+                                       """)
         
         if self.w != '':
             self.button.setFixedWidth(w)
