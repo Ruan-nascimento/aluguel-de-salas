@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/main.py",
   "scripts": {
-    "main": "python ./src/main.py"
+    "main": "nodemon --exec python ./src/main.py"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Ruan-nascimento/aluguel-de-salas/issues"
   },
-  "homepage": "https://github.com/Ruan-nascimento/aluguel-de-salas#readme"
+  "homepage": "https://github.com/Ruan-nascimento/aluguel-de-salas#readme",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
