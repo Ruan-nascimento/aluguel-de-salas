@@ -15,13 +15,13 @@ class History(QWidget):
 
         
         self.top_widget=QWidget()
-        self.top_widget.setStyleSheet("background-color:#092358;")
+        self.top_widget.setStyleSheet("background-color:#27272A; border-radius: 10px;")
         self.bottom_widget=QWidget()
-        self.bottom_widget.setStyleSheet("background-color:#456710;")
+        self.bottom_widget.setStyleSheet("background-color:#71717A; border-radius: 10px;")
         self.innertop_widget=QWidget()
-        self.innertop_widget.setStyleSheet("background-color:#780304;")
-        self.innertop_widget.setFixedSize(100, 100)
-        self.top_widget.setFixedHeight(200)
+        self.innertop_widget.setStyleSheet("background-color:#71717A;")
+        self.innertop_widget.setFixedWidth(300)
+        self.top_widget.setFixedHeight(300)
         
 
 
@@ -34,8 +34,8 @@ class History(QWidget):
         self.setLayout(self.main_layout)
         self.main_layout.addWidget(self.top_widget)
         self.main_layout.addWidget(self.bottom_widget)
-        self.top_layout.addWidget(self.calendar1)
-        self.top_layout.addWidget(self.calendar2)
+        self.top_layout.addWidget(self.calendar1.calendar)
+        self.top_layout.addWidget(self.calendar2.calendar)
         self.top_layout.addWidget(self.innertop_widget)
 
 
