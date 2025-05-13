@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSizePolicy
 from PyQt5.QtCore import Qt
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -11,13 +11,14 @@ class Cancel_graph(QWidget):
         # Layout principal
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
-        self.main_widget.setStyleSheet('background-color:#27272A; border-radius: 10px;')
+        self.main_widget.setStyleSheet('background-color:#27272A; border-radius: 10px; border: 1px solid #F97316;')
+        self.main_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.main_widget.setLayout(self.main_layout)
         
         # texto
         self.label = QLabel('Porcentagem de Cancelamento')
         self.label.setFont(font_datas)
-        self.label.setStyleSheet('color: #ffffff;')
+        self.label.setStyleSheet('color: #ffffff; border: transparent;')
 
         # adicionando label
         self.main_layout.addWidget(self.label, alignment=Qt.AlignCenter)

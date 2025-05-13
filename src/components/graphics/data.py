@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSizePolicy
 from utils.fonts import font_datas_value, font_datas
 from PyQt5.QtCore import Qt
 
@@ -10,6 +10,7 @@ class Datas(QWidget):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.main_layout)
+        self.main_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.main_widget.setStyleSheet('background-color: #27272A; border-radius: 10px;')
         
         # alugueis concluidos

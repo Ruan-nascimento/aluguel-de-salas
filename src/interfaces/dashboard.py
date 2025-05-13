@@ -38,14 +38,14 @@ class Dashboard(QWidget):
         # box 1 - valor total
         self.widget_total_value = QWidget()
         self.widget_total_value.setFixedHeight(100)
-        self.widget_total_value.setStyleSheet('background-color: #3F3F46; border-radius: 10px;')
+        self.widget_total_value.setStyleSheet('background-color: transparent; border-radius: 10px; border-bottom: 1px solid #F97316;')
         self.box_total_value = QVBoxLayout()
         self.valor = QLabel('R$ 144,50')
         self.valor.setFont(font_bold)
-        self.valor.setStyleSheet('color: #F97316;')
+        self.valor.setStyleSheet('color: #F97316; border: transparent;')
         self.label_1 = QLabel('Valor Total')
         self.label_1.setFont(font_medium)
-        self.label_1.setStyleSheet('color: #ffffff')
+        self.label_1.setStyleSheet('color: #ffffff; border: transparent;')
 
         
         self.widget_total_value.setLayout(self.box_total_value)
@@ -55,14 +55,14 @@ class Dashboard(QWidget):
         # box 2 - Total de Salas alugadas
         self.widget_total_salas = QWidget()
         self.widget_total_salas.setFixedHeight(100)
-        self.widget_total_salas.setStyleSheet('background-color: #3F3F46; border-radius: 10px;')
+        self.widget_total_salas.setStyleSheet('background-color: transparent; border-radius: 10px;border-bottom: 1px solid #F97316;')
         self.box_total_salas = QVBoxLayout()
         self.salas = QLabel('4')
         self.salas.setFont(font_bold)
-        self.salas.setStyleSheet('color: #F97316;')
+        self.salas.setStyleSheet('color: #F97316; border: transparent;')
         self.label_2 = QLabel('Salas Alugadas')
         self.label_2.setFont(font_medium)
-        self.label_2.setStyleSheet('color: #ffffff')
+        self.label_2.setStyleSheet('color: #ffffff; border: transparent;')
 
         self.widget_total_salas.setLayout(self.box_total_salas)
         self.box_total_salas.addWidget(self.salas)
@@ -71,14 +71,14 @@ class Dashboard(QWidget):
         # box 3 - Total de Clientes
         self.widget_total_clientes = QWidget()
         self.widget_total_clientes.setFixedHeight(100)
-        self.widget_total_clientes.setStyleSheet('background-color: #3F3F46; border-radius: 10px;')
+        self.widget_total_clientes.setStyleSheet('background-color: transparent; border-radius: 10px;border-bottom: 1px solid #F97316;')
         self.box_total_clientes = QVBoxLayout()
         self.clientes = QLabel('12')
         self.clientes.setFont(font_bold)
-        self.clientes.setStyleSheet('color: #F97316;')
+        self.clientes.setStyleSheet('color: #F97316; border: transparent;')
         self.label_3 = QLabel('Total de Clientes')
         self.label_3.setFont(font_medium)
-        self.label_3.setStyleSheet('color: #ffffff')
+        self.label_3.setStyleSheet('color: #ffffff; border: transparent;')
 
         self.widget_total_clientes.setLayout(self.box_total_clientes)
         self.box_total_clientes.addWidget(self.clientes)
@@ -92,14 +92,18 @@ class Dashboard(QWidget):
         self.graph_mount_payment = Mount_payment().main_widget
         self.graph_daily_rentals = Daily_rentals().main_widget
         
-        self.graph_layout_1.addStretch(3)
-        self.graph_layout_1.addWidget(self.graph_datas, stretch=1)
-        self.graph_layout_1.addWidget(self.graph_cancel, stretch=1)
-        self.graph_layout_1.addWidget(self.graph_daily_rentals, stretch=1)
+        self.graph_layout_1.addSpacing(-10)
+        self.graph_layout_1.addWidget(self.graph_datas, stretch=0)
+        self.graph_layout_1.addSpacing(10)
+        self.graph_layout_1.addWidget(self.graph_cancel, stretch=0)
+        self.graph_layout_1.addSpacing(10)
+        self.graph_layout_1.addWidget(self.graph_daily_rentals, stretch=0)
+        self.graph_layout_1.addSpacing(-10)
         
-        self.graph_layout_2.addStretch(2)
-        self.graph_layout_2.addWidget(self.graph_mount_payment, stretch=1)
-        self.graph_layout_2.addWidget(self.graph_heatmap, stretch=1)
+        self.graph_layout_2.addSpacing(-10)
+        self.graph_layout_2.addWidget(self.graph_mount_payment, stretch=0)
+        self.graph_layout_2.addWidget(self.graph_heatmap, stretch=0)
+        self.graph_layout_2.addSpacing(-10)
         
         self.graph_layout.addWidget(self.graph_widget_1)
         self.graph_layout.addWidget(self.graph_widget_2)
