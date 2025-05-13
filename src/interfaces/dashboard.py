@@ -4,6 +4,8 @@ from utils.fonts import font_bold, font_medium
 from components.graphics.data import Datas
 from components.graphics.cancel import Cancel_graph
 from components.graphics.daily_rentals import Daily_rentals
+from components.graphics.mounth_payment import Mount_payment
+from components.graphics.heatmap import Heatmap
 
 class Dashboard(QWidget):
     def __init__(self):
@@ -28,6 +30,9 @@ class Dashboard(QWidget):
         
         # layout com gráficos de barra
         self.graph_layout_2 = QHBoxLayout()
+        self.graph_widget_2 = QWidget()
+        self.graph_widget_2.setLayout(self.graph_layout_2)
+        self.graph_widget_2.setFixedHeight(260)
         
         
         # box 1 - valor total
@@ -83,14 +88,21 @@ class Dashboard(QWidget):
         # setando configurações
         self.graph_datas = Datas().main_widget
         self.graph_cancel = Cancel_graph().main_widget
-        self.graph_heatmap = Daily_rentals().main_widget
+        self.graph_heatmap = Heatmap().main_widget
+        self.graph_mount_payment = Mount_payment().main_widget
+        self.graph_daily_rentals = Daily_rentals().main_widget
         
         self.graph_layout_1.addStretch(3)
         self.graph_layout_1.addWidget(self.graph_datas, stretch=1)
         self.graph_layout_1.addWidget(self.graph_cancel, stretch=1)
-        self.graph_layout_1.addWidget(self.graph_heatmap, stretch=1)
+        self.graph_layout_1.addWidget(self.graph_daily_rentals, stretch=1)
+        
+        self.graph_layout_2.addStretch(2)
+        self.graph_layout_2.addWidget(self.graph_mount_payment, stretch=1)
+        self.graph_layout_2.addWidget(self.graph_heatmap, stretch=1)
+        
         self.graph_layout.addWidget(self.graph_widget_1)
-        self.graph_layout.addLayout(self.graph_layout_2)
+        self.graph_layout.addWidget(self.graph_widget_2)
         self.box_widget.setLayout(self.box_layout)
         self.box_layout.addWidget(self.widget_total_value)
         self.box_layout.addWidget(self.widget_total_salas)

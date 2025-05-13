@@ -8,7 +8,7 @@ class Heatmap(QWidget):
         self.main_layout = QVBoxLayout()
         self.main_widget = QWidget()
         self.main_widget.setStyleSheet('background-color:#27272A; border-radius: 10px;')
-        self.main_widget.setFixedWidth(420)
+        self.main_widget.setFixedWidth(480)
         self.main_widget.setLayout(self.main_layout)
 
 
