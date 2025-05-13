@@ -1,7 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel
 from PyQt5.QtCore import Qt
 from utils.fonts import font_bold, font_medium
-from utils.dashboard_functions import plot
+from components.graphics.data import Datas
+from components.graphics.cancel import Cancel_graph
+from components.graphics.daily_rentals import Daily_rentals
 
 class Dashboard(QWidget):
     def __init__(self):
@@ -16,12 +18,16 @@ class Dashboard(QWidget):
         self.box_widget.setStyleSheet('background-color: #27272A; border-radius: 10px;')
         self.box_layout = QHBoxLayout()
         
-        # gráfico
-        self.graph_widget = QWidget()
-        self.graph_widget.setStyleSheet('border-radius: 10px;')
-        self.graph_layout = QHBoxLayout()
-        self.graph_widget.setLayout(self.graph_layout)
-        self.graph = plot(self.graph_layout)
+        self.graph_layout = QVBoxLayout()
+        
+        # layout com gráficos sortidos
+        self.graph_layout_1 = QHBoxLayout()
+        self.graph_widget_1 = QWidget()
+        self.graph_widget_1.setLayout(self.graph_layout_1)
+        self.graph_widget_1.setFixedHeight(260)
+        
+        # layout com gráficos de barra
+        self.graph_layout_2 = QHBoxLayout()
         
         
         # box 1 - valor total
@@ -75,11 +81,21 @@ class Dashboard(QWidget):
         
         
         # setando configurações
+        self.graph_datas = Datas().main_widget
+        self.graph_cancel = Cancel_graph().main_widget
+        self.graph_heatmap = Daily_rentals().main_widget
+        
+        self.graph_layout_1.addStretch(3)
+        self.graph_layout_1.addWidget(self.graph_datas, stretch=1)
+        self.graph_layout_1.addWidget(self.graph_cancel, stretch=1)
+        self.graph_layout_1.addWidget(self.graph_heatmap, stretch=1)
+        self.graph_layout.addWidget(self.graph_widget_1)
+        self.graph_layout.addLayout(self.graph_layout_2)
         self.box_widget.setLayout(self.box_layout)
         self.box_layout.addWidget(self.widget_total_value)
         self.box_layout.addWidget(self.widget_total_salas)
         self.box_layout.addWidget(self.widget_total_clientes)
         self.main_layout.addWidget(self.box_widget, stretch=1, alignment=Qt.AlignTop)
-        self.main_layout.addWidget(self.graph_widget)
+        self.main_layout.addLayout(self.graph_layout)
         self.main_layout.addStretch(3)
         self.setLayout(self.main_layout)
