@@ -4,7 +4,6 @@ from utils.fonts import font_bold, font_medium
 from components.graphics.data import Datas
 from components.graphics.cancel import Cancel_graph
 from components.graphics.daily_rentals import Daily_rentals
-from components.graphics.mounth_payment import Mount_payment
 from components.graphics.heatmap import Heatmap
 
 class Dashboard(QWidget):
@@ -89,7 +88,6 @@ class Dashboard(QWidget):
         self.graph_datas = Datas().main_widget
         self.graph_cancel = Cancel_graph().main_widget
         self.graph_heatmap = Heatmap().main_widget
-        self.graph_mount_payment = Mount_payment().main_widget
         self.graph_daily_rentals = Daily_rentals().main_widget
         
         self.graph_layout_1.addSpacing(-10)
@@ -101,9 +99,8 @@ class Dashboard(QWidget):
         self.graph_layout_1.addSpacing(-10)
         
         self.graph_layout_2.addSpacing(-10)
-        self.graph_layout_2.addWidget(self.graph_mount_payment, stretch=0)
         self.graph_layout_2.addWidget(self.graph_heatmap, stretch=0)
-        self.graph_layout_2.addSpacing(-10)
+        self.graph_layout_2.addSpacing(-8)
         
         self.graph_layout.addWidget(self.graph_widget_1)
         self.graph_layout.addWidget(self.graph_widget_2)

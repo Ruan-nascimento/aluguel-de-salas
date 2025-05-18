@@ -28,7 +28,7 @@ class Cancel_graph(QWidget):
         
 
     def create_chart(self):
-        cancel = 11.67
+        cancel = 11.6
         completed = 100 - cancel
         sizes = [cancel, completed]
         colors = ['#c12320', '#59c130'] 
