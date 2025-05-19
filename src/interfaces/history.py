@@ -20,7 +20,7 @@ class History(QWidget):
         self.bottom_widget.setStyleSheet("background-color:#71717A; border-radius: 10px;")
         self.innertop_widget=QWidget()
         self.innertop_widget.setStyleSheet("background-color:#71717A;")
-        self.innertop_widget.setFixedWidth(300)
+        self.innertop_widget.setFixedWidth(200)
         self.top_widget.setFixedHeight(300)
         
 

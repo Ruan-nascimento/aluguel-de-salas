@@ -15,3 +15,7 @@ font_datas.setWeight(400)
 font_datas_value = QFont()
 font_datas_value.setPointSize(14)
 font_datas_value.setBold(True)
+
+font_title = QFont()
+font_title.setPointSize(24)
+font_title.setWeight(700)
