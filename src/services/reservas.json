@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "name": "Ruan",
+        "room": "sala1",
+        "date": "29/05/2025",
+        "in_hour": "08:00",
+        "out_hour": "11:00",
+        "total_value": 600.0
+    }
+]

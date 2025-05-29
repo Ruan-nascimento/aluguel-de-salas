@@ -1,14 +1,20 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QComboBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QComboBox, QMessageBox
 from PyQt5.QtCore import Qt
 from utils.fonts import font_title
 from components.calendar import Calendar
 from components.nav_buttons import Button
+from utils.new_reserve.functions import update_rooms, create_reserve
 
 class NewReserve(QWidget):
     def __init__(self):
         super().__init__()
         
         self.setStyleSheet("""
+                           QMessageBox {
+                               background-color: #27272A;
+                               color: #ffffff
+                           }
+                           
                            QLabel {
                                color: #ffffff;
                                font-size: 20px;
@@ -85,6 +91,7 @@ class NewReserve(QWidget):
         self.saida_box = QComboBox()
         
         self.reservar = Button('Reservar').button
+        self.reservar.clicked.connect(self.create_new_reserve)
         self.limpar = Button('Limpar').button
         self.limpar.clicked.connect(self.clear_fields)
         self.limpar.setStyleSheet("""
@@ -127,8 +134,7 @@ class NewReserve(QWidget):
         self.calendar_widget.setStyleSheet('background-color: #27272A;')
         
        
-        self.calendar_instance = Calendar()
-        self.calendar = self.calendar_instance.calendar 
+        self.calendar = Calendar()
         self.calendar_layout.addWidget(self.calendar)
         
         self.layout_widgets.addWidget(self.form_widget, alignment=Qt.AlignTop)
@@ -137,8 +143,42 @@ class NewReserve(QWidget):
         self.main_layout.addWidget(self.widget_widgets)
         self.setLayout(self.main_layout)
         
+        self.load_rooms()
+        
         
     def clear_fields(self):
         self.input_name.setText('')
         self.entrada_box.setCurrentIndex(0)
         self.saida_box.setCurrentIndex(0)
+    
+    def load_rooms(self):
+        if update_rooms() == True:
+            QMessageBox.warning(self, "Falha na Busca", "A Aplicação Não Conseguiu Encontrar o Banco de Salas")
+        
+        else:
+            self.salas.clear()
+            self.salas.addItems(update_rooms())
+    
+    def create_new_reserve(self):
+        name = self.input_name.text()
+        room = self.salas.currentText()
+        date = self.calendar.selectedDate().toString("dd/MM/yyyy")
+        in_hour = self.entrada_box.currentText()
+        out_hour = self.saida_box.currentText()
+        
+        if name and room:
+            success, message = create_reserve(name, room, date, in_hour, out_hour)
+            
+            if success:
+                QMessageBox.information(self, "Sucesso", message)
+                self.input_name.clear()
+                self.entrada_box.setCurrentIndex(0)
+                self.saida_box.setCurrentIndex(0)
+            
+            else:
+                QMessageBox.warning(self, "Erro!", message)
+        
+        else:
+            QMessageBox.warning(self, "Não é Possivel!", "Preencha Todos os Campos!!!")
+    
+    

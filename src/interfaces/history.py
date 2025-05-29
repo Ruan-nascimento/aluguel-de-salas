@@ -34,8 +34,8 @@ class History(QWidget):
         self.setLayout(self.main_layout)
         self.main_layout.addWidget(self.top_widget)
         self.main_layout.addWidget(self.bottom_widget)
-        self.top_layout.addWidget(self.calendar1.calendar)
-        self.top_layout.addWidget(self.calendar2.calendar)
+        self.top_layout.addWidget(self.calendar1)
+        self.top_layout.addWidget(self.calendar2)
         self.top_layout.addWidget(self.innertop_widget)
 
 
