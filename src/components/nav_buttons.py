@@ -12,7 +12,11 @@ class Button(QPushButton):
         self.w = w
         
         # definindo o botão
-        self.button = QPushButton(text)
+        if text:
+            self.button = QPushButton(text)
+        else:
+            self.button = QPushButton()
+            
         self.button.setCursor(QCursor(Qt.PointingHandCursor))
         self.button.setStyleSheet("""
                                        QPushButton {

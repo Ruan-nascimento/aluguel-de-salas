@@ -5,6 +5,7 @@ from components.graphics.data import Datas
 from components.graphics.cancel import Cancel_graph
 from components.graphics.daily_rentals import Daily_rentals
 from components.graphics.heatmap import Heatmap
+from utils.dashboard.functions import total_value, rooms_rented, total_rented
 
 class Dashboard(QWidget):
     def __init__(self):
@@ -39,10 +40,10 @@ class Dashboard(QWidget):
         self.widget_total_value.setFixedHeight(100)
         self.widget_total_value.setStyleSheet('background-color: transparent; border-radius: 10px; border-bottom: 1px solid #F97316;')
         self.box_total_value = QVBoxLayout()
-        self.valor = QLabel('R$ 144,50')
+        self.valor = QLabel('R$ 0')
         self.valor.setFont(font_bold)
         self.valor.setStyleSheet('color: #F97316; border: transparent;')
-        self.label_1 = QLabel('Valor Total')
+        self.label_1 = QLabel('Valor Total Hoje')
         self.label_1.setFont(font_medium)
         self.label_1.setStyleSheet('color: #ffffff; border: transparent;')
 
@@ -56,7 +57,7 @@ class Dashboard(QWidget):
         self.widget_total_salas.setFixedHeight(100)
         self.widget_total_salas.setStyleSheet('background-color: transparent; border-radius: 10px;border-bottom: 1px solid #F97316;')
         self.box_total_salas = QVBoxLayout()
-        self.salas = QLabel('4')
+        self.salas = QLabel('0')
         self.salas.setFont(font_bold)
         self.salas.setStyleSheet('color: #F97316; border: transparent;')
         self.label_2 = QLabel('Salas Alugadas')
@@ -72,10 +73,10 @@ class Dashboard(QWidget):
         self.widget_total_clientes.setFixedHeight(100)
         self.widget_total_clientes.setStyleSheet('background-color: transparent; border-radius: 10px;border-bottom: 1px solid #F97316;')
         self.box_total_clientes = QVBoxLayout()
-        self.clientes = QLabel('12')
+        self.clientes = QLabel('0')
         self.clientes.setFont(font_bold)
         self.clientes.setStyleSheet('color: #F97316; border: transparent;')
-        self.label_3 = QLabel('Total de Clientes')
+        self.label_3 = QLabel('Total de Aluguéis')
         self.label_3.setFont(font_medium)
         self.label_3.setStyleSheet('color: #ffffff; border: transparent;')
 
@@ -112,3 +113,25 @@ class Dashboard(QWidget):
         self.main_layout.addLayout(self.graph_layout)
         self.main_layout.addStretch(3)
         self.setLayout(self.main_layout)
+        
+        self.update()
+        
+    def update(self):
+        if not total_value == True:
+            self.valor.setText(total_value()[0])
+        
+        else:
+            self.valor.setText('0')
+            
+        
+        if not rooms_rented == True:
+            self.salas.setText(rooms_rented())
+        
+        else:
+            self.salas.setText('0')
+            
+        if not total_rented == True:
+            self.clientes.setText(total_rented())
+        
+        else:
+            self.cliente.setText('0')

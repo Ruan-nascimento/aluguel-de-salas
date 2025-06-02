@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from utils.fonts import font_datas
+from utils.dashboard.functions import cancel_rate
 
 class Cancel_graph(QWidget):
     def __init__(self):
@@ -28,7 +29,7 @@ class Cancel_graph(QWidget):
         
 
     def create_chart(self):
-        cancel = 11.6
+        cancel = cancel_rate()
         completed = 100 - cancel
         sizes = [cancel, completed]
         colors = ['#c12320', '#59c130'] 
@@ -39,7 +40,7 @@ class Cancel_graph(QWidget):
         wedges, texts = ax.pie(sizes, labels=None, colors=colors, startangle=90,
                                wedgeprops=dict(width=0.4, edgecolor='none'))
 
-        ax.text(0, 0, f'{cancel}%', 
+        ax.text(0, 0, f'{cancel:.1f}%', 
                 ha='center', va='center', fontsize=14, color='white', weight='bold')
         
         ax.axis('equal') 

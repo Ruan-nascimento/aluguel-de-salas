@@ -9,9 +9,9 @@ class Managment(QWidget):
         super().__init__()
         self.setWindowTitle("Gerenciamento das Salas")
         self.layout = QVBoxLayout()
-        self.layout.setAlignment(Qt.AlignTop)  # Alinha tudo ao topo
+        self.layout.setAlignment(Qt.AlignTop) 
 
-        # Título
+
         self.titulo = QLabel("Gerenciamento das Salas")
         self.titulo.setAlignment(Qt.AlignCenter)
         self.titulo.setStyleSheet("font-size: 24px; color: #ffffff; font-weight: bold;")
@@ -19,11 +19,10 @@ class Managment(QWidget):
         self.layout.addWidget(self.titulo)
 
         self.main_layout = QHBoxLayout()
-        self.main_layout.setAlignment(Qt.AlignTop)  # Alinha as seções ao topo
+        self.main_layout.setAlignment(Qt.AlignTop) 
 
-        # Área de Criar Nova Sala (esquerda)
         self.criar_layout = QVBoxLayout()
-        self.criar_layout.setAlignment(Qt.AlignTop)  # Alinha os elementos ao topo
+        self.criar_layout.setAlignment(Qt.AlignTop) 
         self.criar_label = QLabel("Criar Nova Sala")
         self.criar_label.setStyleSheet("font-size: 16px; color: #ffffff; margin-bottom: 5px;")
         self.criar_label.setFixedHeight(30)
@@ -59,22 +58,21 @@ class Managment(QWidget):
         self.criar_layout.addWidget(self.valor_label)
         self.criar_layout.addWidget(self.valor_input)
         self.botao_layout = QHBoxLayout()
-        self.botao_layout.setAlignment(Qt.AlignTop)  # Alinha os botões ao topo
+        self.botao_layout.setAlignment(Qt.AlignTop)
         self.botao_layout.addWidget(self.botao_salvar)
         self.botao_layout.addWidget(self.botao_limpar)
         self.criar_layout.addLayout(self.botao_layout)
 
-        # Área de Listagem de Salas (direita, agora com tabela)
         self.salas_layout = QVBoxLayout()
-        self.salas_layout.setAlignment(Qt.AlignTop)  # Alinha os elementos ao topo
+        self.salas_layout.setAlignment(Qt.AlignTop) 
         self.salas_label = QLabel("Salas Disponíveis")
         self.salas_label.setStyleSheet("font-size: 16px; color: #ffffff; margin-bottom: 5px;")
         self.salas_label.setFixedHeight(30)
 
-        # Tabela de salas
+
         self.salas_table = QTableWidget()
-        self.salas_table.setColumnCount(4)
-        self.salas_table.setHorizontalHeaderLabels(['Nome', 'Valor Por Hora', 'Editar', 'Remover'])
+        self.salas_table.setColumnCount(3)
+        self.salas_table.setHorizontalHeaderLabels(['Nome', 'Valor Por Hora', 'Remover'])
         self.salas_table.setStyleSheet("""
             QTableWidget {
                 background-color: #27272a;
@@ -118,12 +116,10 @@ class Managment(QWidget):
         self.salas_layout.addWidget(self.salas_label)
         self.salas_layout.addWidget(self.salas_table)
 
-        # Adicionar layouts ao layout principal com pesos iguais (50% cada)
         self.main_layout.addLayout(self.criar_layout, 1)
         self.main_layout.addLayout(self.salas_layout, 1)
         self.layout.addLayout(self.main_layout)
 
-        # Estilizar o widget principal
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(10)
         self.setLayout(self.layout)
@@ -133,48 +129,40 @@ class Managment(QWidget):
     def carregar_salas(self):
         self.salas_table.setRowCount(0)
         rooms = load_rooms()
+        print('Salas carregadas para tabela:', rooms)
+        
         if rooms:
             self.salas_table.setRowCount(len(rooms))
             for i, room in enumerate(rooms):
-                self.salas_table.setItem(i, 0, QTableWidgetItem(room['name']))
-                self.salas_table.setItem(i, 1, QTableWidgetItem(f"R$ {room['value']:.2f} /h"))
-                editar_btn = Button('Edit').button
-                editar_btn.setStyleSheet("""
-                                       QPushButton {
-                                        background-color: #a3a3a3;
-                                        color: white;
-                                        outline: none;
-                                        border-radius: 8px;
-                                        padding: 10px
-                                    }
-                           
-                                        QPushButton:hover{
-                                            background-color: #6f6f6f;
-                                        }
-                                       """)
-                remover_btn = Button('X').button
+                room_name = room.get('name', '')
+                if not room_name:
+                    print(f"Aviso: Sala na posição {i} tem nome inválido: {room}")
+                    room_name = "Nome Inválido"
+                
+                self.salas_table.setItem(i, 0, QTableWidgetItem(room_name))
+                self.salas_table.setItem(i, 1, QTableWidgetItem(f"R$ {room.get('value', 0.0):.2f} /h"))
+                remover_btn = Button('').button 
                 remover_btn.setStyleSheet("""
-                                       QPushButton {
-                                        background-color: #7a0012;
-                                        color: white;
-                                        outline: none;
-                                        border-radius: 8px;
-                                        padding: 10px
-                                    }
-                           
-                                        QPushButton:hover{
-                                            background-color: #5c0512;
-                                        }
-                                       """)
-                remover_btn.clicked.connect(lambda checked, nome=room['name']: self.remover_sala(nome))
-                self.salas_table.setCellWidget(i, 2, editar_btn)
-                self.salas_table.setCellWidget(i, 3, remover_btn)
+                    QPushButton {
+                        background-color: #7a0012;
+                        color: white;
+                        outline: none;
+                        border-radius: 8px;
+                        padding: 10px
+                    }
+                    QPushButton:hover {
+                        background-color: #5c0512;
+                    }
+                """)
+ 
+                remover_btn.clicked.connect(lambda checked, nome=room_name: self.remover_sala(nome))
+                print(f"Botão criado para sala: {room_name}")
+                self.salas_table.setCellWidget(i, 2, remover_btn)
         else:
             self.salas_table.setRowCount(1)
             self.salas_table.setItem(0, 0, QTableWidgetItem('Nenhuma Sala Disponível'))
             self.salas_table.setItem(0, 1, QTableWidgetItem(''))
             self.salas_table.setCellWidget(0, 2, None)
-            self.salas_table.setCellWidget(0, 3, None)
 
     def adicionar_sala(self):
         nome = self.nome_input.text()

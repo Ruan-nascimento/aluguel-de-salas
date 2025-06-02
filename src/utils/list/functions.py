@@ -1,4 +1,6 @@
-from utils.files import load_reserves, load_historic, save_reserves, save_historic
+from utils.files import load_reserves, load_historic, save_reserves, save_historic, save_cancel, load_cancel
+from datetime import datetime
+from random import randint
 from PyQt5.QtWidgets import QTableWidgetItem
 from components.nav_buttons import Button
 
@@ -54,9 +56,12 @@ def conclude_reserves(i):
 def cancel_reserves(i):
     
     reserves = load_reserves()
+    cancels = load_cancel()
     if 0 <= i < len(reserves):
         reserves.pop(i)
         save_reserves(reserves)
+        cancels.append({'id':randint(0, 10000), 'date': datetime.now().strftime("%d/%m/%Y")})
+        save_cancel(cancels)
         return True
 
     return False

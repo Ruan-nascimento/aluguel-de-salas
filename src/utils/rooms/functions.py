@@ -11,13 +11,18 @@ def add_room(name, value):
 def remove_room(name):
     rooms = load_rooms()
     reserves = load_reserves()
-    
+
     for reserva in reserves:
-        if reserva.get('room') == name:
+        if 'room' in reserva and reserva['room'] == name:
             return False, f'Não é possível excluir essa sala pois {reserva.get("name", "alguém")} tem uma reserva dela!'
     
+
     updated_rooms = [room for room in rooms if room['name'] != name]
+
+    
     if len(updated_rooms) < len(rooms):
-        save_rooms(updated_rooms)
-        return True, 'Sala removida com sucesso!'
+        if save_rooms(updated_rooms):
+            return True, 'Sala removida com sucesso!'
+        else:
+            return False, 'Erro ao salvar o arquivo de salas!'
     return False, 'Sala não encontrada!'

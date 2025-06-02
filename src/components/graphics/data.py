@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSizePolicy
 from utils.fonts import font_datas_value, font_datas
 from PyQt5.QtCore import Qt
+from utils.dashboard.functions import total_value, full_cancels
 
 class Datas(QWidget):
     def __init__(self):
@@ -19,9 +20,9 @@ class Datas(QWidget):
         self.total_aluguel.setLayout(self.total_aluguel_layout)
         self.total_aluguel.setStyleSheet('background-color: #3F3F46; color: #ffffff; border-radius: 10px;')
         
-        self.label_1 = QLabel('Total de Aluguéis Concluidos')
+        self.label_1 = QLabel('Maior Valor Num Dia')
         self.label_1.setFont(font_datas)
-        self.label_2 = QLabel('68')
+        self.label_2 = QLabel('0')
         self.label_2.setStyleSheet('color: #F97316;')
         self.label_2.setFont(font_datas_value)
         
@@ -36,7 +37,7 @@ class Datas(QWidget):
         
         self.label_3 = QLabel('Faturamento Total')
         self.label_3.setFont(font_datas)
-        self.label_4 = QLabel('R$ 1.239,00')
+        self.label_4 = QLabel('R$ 0')
         self.label_4.setStyleSheet('color: #008000;')
         self.label_4.setFont(font_datas_value)
         
@@ -51,7 +52,7 @@ class Datas(QWidget):
         
         self.label_5 = QLabel('Total de Cancelamentos')
         self.label_5.setFont(font_datas)
-        self.label_6 = QLabel('23')
+        self.label_6 = QLabel('0')
         self.label_6.setStyleSheet('color: #F97316;')
         self.label_6.setFont(font_datas_value)
         
@@ -68,3 +69,20 @@ class Datas(QWidget):
         self.main_layout.addWidget(self.total_aluguel)
         self.main_layout.addWidget(self.total_cancelamento)
         
+        self.update()
+        
+    def update(self):
+        if total_value:
+            self.label_4.setText(total_value()[1])
+            self.label_2.setText(total_value()[2])
+        
+        else:
+            self.label_4.setText('R$ 0')
+            self.label_2.setText('R$ 0')
+        
+        if full_cancels:
+            
+            self.label_6.setText(full_cancels())
+        
+        else:
+            self.label_6.setText('0')

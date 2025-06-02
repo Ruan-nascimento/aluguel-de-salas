@@ -152,7 +152,8 @@ class NewReserve(QWidget):
         self.saida_box.setCurrentIndex(0)
     
     def load_rooms(self):
-        if update_rooms() == True:
+        update = update_rooms()
+        if update == True:
             QMessageBox.warning(self, "Falha na Busca", "A Aplicação Não Conseguiu Encontrar o Banco de Salas")
         
         else:
