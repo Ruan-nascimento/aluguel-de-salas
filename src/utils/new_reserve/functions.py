@@ -30,7 +30,7 @@ def create_reserve(name, room, date, in_hour, out_hour):
                 r_in = int(r["in_hour"].split(":")[0]) * 60 + int(r["in_hour"].split(":")[1])
                 r_out = int(r["out_hour"].split(":")[0]) * 60 + int(r["out_hour"].split(":")[1])
                 
-                if not (r_out <= r_in or r_in >= r_out):
+                if not (min_out <= r_in or min_in >= r_out):
                     return False, "Dia e Horário Indisponivel Para Essa Sala!"
         
         

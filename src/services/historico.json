@@ -54,5 +54,53 @@
         "in_hour": "08:00",
         "out_hour": "13:00",
         "total_value": 150.0
+    },
+    {
+        "name": "Gaby",
+        "room": "Sala 2",
+        "date": "03/06/2025",
+        "in_hour": "12:00",
+        "out_hour": "17:00",
+        "total_value": 125.0
+    },
+    {
+        "name": "Lucas",
+        "room": "Sala Giga",
+        "date": "03/06/2025",
+        "in_hour": "08:00",
+        "out_hour": "09:00",
+        "total_value": 60.0
+    },
+    {
+        "name": "Joca",
+        "room": "Sala 2",
+        "date": "02/06/2025",
+        "in_hour": "17:00",
+        "out_hour": "22:00",
+        "total_value": 125.0
+    },
+    {
+        "name": "Alberto",
+        "room": "Sala Giga",
+        "date": "04/06/2025",
+        "in_hour": "10:00",
+        "out_hour": "13:00",
+        "total_value": 180.0
+    },
+    {
+        "name": "Sidney",
+        "room": "Sala 4",
+        "date": "04/06/2025",
+        "in_hour": "11:00",
+        "out_hour": "12:00",
+        "total_value": 40.0
+    },
+    {
+        "name": "Ingrid",
+        "room": "Sala 3",
+        "date": "02/06/2025",
+        "in_hour": "08:00",
+        "out_hour": "14:00",
+        "total_value": 180.0
     }
 ]

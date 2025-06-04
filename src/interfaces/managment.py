@@ -181,7 +181,7 @@ class Managment(QWidget):
         if nome:
             sucesso, mensagem = remove_room(nome)
             if sucesso:
-                QMessageBox.information(self, "Sucesso", mensagem)
+                QMessageBox.warning(self, "Sucesso", mensagem)
                 self.carregar_salas()
             else:
                 QMessageBox.warning(self, "Erro", mensagem)

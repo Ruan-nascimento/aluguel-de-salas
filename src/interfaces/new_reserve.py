@@ -171,7 +171,7 @@ class NewReserve(QWidget):
             success, message = create_reserve(name, room, date, in_hour, out_hour)
             
             if success:
-                QMessageBox.information(self, "Sucesso", message)
+                QMessageBox.warning(self, "Sucesso", message)
                 self.input_name.clear()
                 self.entrada_box.setCurrentIndex(0)
                 self.saida_box.setCurrentIndex(0)

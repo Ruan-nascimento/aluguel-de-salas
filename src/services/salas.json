@@ -1,10 +1,22 @@
 [
     {
-        "name": "sala media",
-        "value": 20
+        "name": "Sala 1",
+        "value": 20.0
     },
     {
-        "name": "Sala Grande",
+        "name": "Sala 2",
+        "value": 25.0
+    },
+    {
+        "name": "Sala 3",
         "value": 30.0
+    },
+    {
+        "name": "Sala 4",
+        "value": 40.0
+    },
+    {
+        "name": "Sala Giga",
+        "value": 60.0
     }
 ]

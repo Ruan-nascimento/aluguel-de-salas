@@ -50,10 +50,10 @@ class ListReserves(QWidget):
     
     def conclude_reserve(self, i):
         if conclude_reserves(i):
-            QMessageBox.information(self, "Sucesso!", "Reserva Concluída e Removida!")
+            QMessageBox.warning(self, "Sucesso!", "Reserva Concluída e Removida!")
             load_all_reserves(self.table, self.conclude_reserve, self.cancel_reserve)  
     
     def cancel_reserve(self, i):
         if cancel_reserves(i):
-            QMessageBox.information(self, "Sucesso!", "Reserva Cancelada Com Sucesso...")
+            QMessageBox.warning(self, "Sucesso!", "Reserva Cancelada Com Sucesso...")
             load_all_reserves(self.table, self.conclude_reserve, self.cancel_reserve)
